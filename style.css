@@ -1,0 +1,20 @@
+#tabuleiro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 418px;
+}
+
+.casa {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.casa.clara {
+    background-color: #f0f0f0;
+}
+
+.casa.escura {
+    background-color: #005;
+}
