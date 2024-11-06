@@ -59,25 +59,25 @@ class Peca {
 class Peao extends Peca {
     constructor(cor, linha, coluna) {
         super(cor, linha,coluna);
-        this.simbolo = cor === 'branca' ? '&#9823' : '&#9823';
+        this.simbolo = cor === 'preta' ? '&#9823' : '&#9823';
     }
 }
 
 const tabuleiro = new Tabuleiro();
-peao = new Peao('branca', 1, 0);
+peao = new Peao('preta', 1, 0);
 tabuleiro.colocarPeca(peao, 1, 0);
-peao = new Peao('branca', 1, 1);
+peao = new Peao('preta', 1, 1);
 tabuleiro.colocarPeca(peao, 1, 1);
-peao = new Peao('branca', 1, 2);
+peao = new Peao('preta', 1, 2);
 tabuleiro.colocarPeca(peao, 1, 2);
-peao = new Peao('branca', 1, 3);
+peao = new Peao('preta', 1, 3);
 tabuleiro.colocarPeca(peao, 1, 3);
-peao = new Peao('branca', 1, 4);
+peao = new Peao('preta', 1, 4);
 tabuleiro.colocarPeca(peao, 1, 4);
-peao = new Peao('branca', 1, 5);
+peao = new Peao('preta', 1, 5);
 tabuleiro.colocarPeca(peao, 1, 5);
-peao = new Peao('branca', 1, 6);
+peao = new Peao('preta', 1, 6);
 tabuleiro.colocarPeca(peao, 1, 6);
-peao = new Peao('branca', 1, 7);
+peao = new Peao('preta', 1, 7);
 tabuleiro.colocarPeca(peao, 1, 7);
 alert(tabuleiro.nome);
