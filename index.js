@@ -94,26 +94,67 @@ class Peao extends Peca {
     constructor(cor, linha, coluna) {
         super(cor, linha, coluna);
         this.simbolo = cor === 'branca' ? '&#9817;' : '&#9823;';
+        this.movimentoInicial = true; 
     }
 
     movimentosPossiveis(tabuleiro) {
         const movimentos = [];
-        const direcao = this.cor === 'branca' ? -1 : 1;
+        const direcao = this.cor === 'branca' ? -1 : 1; 
+        const linhaFrente = this.linha + direcao;
 
-        if (!tabuleiro[this.linha + direcao]?.[this.coluna]?.peca) {
-            movimentos.push({ linha: this.linha + direcao, coluna: this.coluna });
+        if (
+            this.estaDentroDoTabuleiro(linhaFrente, this.coluna) &&
+            !tabuleiro.tabuleiro[linhaFrente][this.coluna].peca
+        ) {
+            movimentos.push({ linha: linhaFrente, coluna: this.coluna });
+
+            const linhaDuasFrentes = this.linha + 2 * direcao;
+            if (
+                this.movimentoInicial &&
+                this.estaDentroDoTabuleiro(linhaDuasFrentes, this.coluna) &&
+                !tabuleiro.tabuleiro[linhaDuasFrentes][this.coluna].peca
+            ) {
+                movimentos.push({ linha: linhaDuasFrentes, coluna: this.coluna });
+            }
         }
 
-        for (const deslocamento of [-1, 1]) {
-            const alvo = tabuleiro[this.linha + direcao]?.[this.coluna + deslocamento];
-            if (alvo && alvo.peca && alvo.peca.cor !== this.cor) {
-                movimentos.push({ linha: this.linha + direcao, coluna: this.coluna + deslocamento });
+        for (const deslocamentoColuna of [-1, 1]) {
+            const linhaDiagonal = linhaFrente;
+            const colunaDiagonal = this.coluna + deslocamentoColuna;
+
+            if (this.estaDentroDoTabuleiro(linhaDiagonal, colunaDiagonal)) {
+                const casaDiagonal = tabuleiro.tabuleiro[linhaDiagonal][colunaDiagonal];
+                if (casaDiagonal.peca && casaDiagonal.peca.cor !== this.cor) {
+                    movimentos.push({ linha: linhaDiagonal, coluna: colunaDiagonal });
+                }
             }
         }
 
         return movimentos;
     }
+
+    moverPara(novaLinha, novaColuna) {
+        super.moverPara(novaLinha, novaColuna);
+
+        this.movimentoInicial = false;
+
+        if ((this.cor === 'branca' && novaLinha === 0) || (this.cor === 'preta' && novaLinha === 7)) {
+            this.promover();
+        }
+    }
+
+    promover() {
+        this.simbolo = this.cor === 'branca' ? '&#9813;' : '&#9819;';
+        this.movimentosPossiveis = function () {
+            return [];
+        };
+    }
+
+    estaDentroDoTabuleiro(linha, coluna) {
+        return linha >= 0 && linha < 8 && coluna >= 0 && coluna < 8;
+    }
 }
+
 
 class Torre extends Peca {
     constructor(cor, linha, coluna) {
