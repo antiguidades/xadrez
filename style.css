@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 418px;
-    /* Ajuste o tamanho conforme necessário */
 }
 
 .casa {
@@ -14,13 +13,10 @@
     text-align: center;
 }
 
-/* Criando o padrão de cores do tabuleiro */
 .casa.clara {
     background-color: #f0f0f0;
-    /* Cor clara */
 }
 
 .casa.escura {
     background-color: #808080;
-    /* Cor escura */
 }

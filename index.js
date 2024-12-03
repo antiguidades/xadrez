@@ -121,7 +121,7 @@ class Rainha extends Peca {
 
 const tabuleiro = new Tabuleiro();
 
-// Peças Brancas
+
 const pecasBrancas = [
     new Peao('branca', 1, 0), new Peao('branca', 1, 1), new Peao('branca', 1, 2), new Peao('branca', 1, 3),
     new Peao('branca', 1, 4), new Peao('branca', 1, 5), new Peao('branca', 1, 6), new Peao('branca', 1, 7),
@@ -132,7 +132,7 @@ const pecasBrancas = [
 peao1 = new Peao('preta', 6, 0);
 tabuleiro.colocarPeca(peao1,6,0);
 
-// Peças Pretas
+
 const pecasPretas = [
     new Peao('preta', 6, 0), new Peao('preta', 6, 1), new Peao('preta', 6, 2), new Peao('preta', 6, 3),
     new Peao('preta', 6, 4), new Peao('preta', 6, 5), new Peao('preta', 6, 6), new Peao('preta', 6, 7),
@@ -140,7 +140,7 @@ const pecasPretas = [
     new Bispo('preta', 7, 2), new Bispo('preta', 7, 5), new Rainha('preta', 7, 3), new Rei('preta', 7, 4)
 ];
 
-// Colocar as peças brancas e pretas no tabuleiro
+
 pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
 pecasPretas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
 
