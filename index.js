@@ -96,6 +96,10 @@ class Peao extends Peca {
         this.simbolo = cor === 'branca' ? '&#9817;' : '&#9823;';
         this.movimentoInicial = true; 
     }
+
+    movimentosPossiveis(tabuleiro) {
+        return this.moverLinhaColuna(tabuleiro);
+    }
 }
 
 
