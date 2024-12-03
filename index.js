@@ -96,63 +96,6 @@ class Peao extends Peca {
         this.simbolo = cor === 'branca' ? '&#9817;' : '&#9823;';
         this.movimentoInicial = true; 
     }
-
-    movimentosPossiveis(tabuleiro) {
-        const movimentos = [];
-        const direcao = this.cor === 'branca' ? -1 : 1; 
-        const linhaFrente = this.linha + direcao;
-
-        if (
-            this.estaDentroDoTabuleiro(linhaFrente, this.coluna) &&
-            !tabuleiro.tabuleiro[linhaFrente][this.coluna].peca
-        ) {
-            movimentos.push({ linha: linhaFrente, coluna: this.coluna });
-
-            const linhaDuasFrentes = this.linha + 2 * direcao;
-            if (
-                this.movimentoInicial &&
-                this.estaDentroDoTabuleiro(linhaDuasFrentes, this.coluna) &&
-                !tabuleiro.tabuleiro[linhaDuasFrentes][this.coluna].peca
-            ) {
-                movimentos.push({ linha: linhaDuasFrentes, coluna: this.coluna });
-            }
-        }
-
-        for (const deslocamentoColuna of [-1, 1]) {
-            const linhaDiagonal = linhaFrente;
-            const colunaDiagonal = this.coluna + deslocamentoColuna;
-
-            if (this.estaDentroDoTabuleiro(linhaDiagonal, colunaDiagonal)) {
-                const casaDiagonal = tabuleiro.tabuleiro[linhaDiagonal][colunaDiagonal];
-                if (casaDiagonal.peca && casaDiagonal.peca.cor !== this.cor) {
-                    movimentos.push({ linha: linhaDiagonal, coluna: colunaDiagonal });
-                }
-            }
-        }
-
-        return movimentos;
-    }
-
-    moverPara(novaLinha, novaColuna) {
-        super.moverPara(novaLinha, novaColuna);
-
-        this.movimentoInicial = false;
-
-        if ((this.cor === 'branca' && novaLinha === 0) || (this.cor === 'preta' && novaLinha === 7)) {
-            this.promover();
-        }
-    }
-
-    promover() {
-        this.simbolo = this.cor === 'branca' ? '&#9813;' : '&#9819;';
-        this.movimentosPossiveis = function () {
-            return [];
-        };
-    }
-
-    estaDentroDoTabuleiro(linha, coluna) {
-        return linha >= 0 && linha < 8 && coluna >= 0 && coluna < 8;
-    }
 }
 
 
