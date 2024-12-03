@@ -10,6 +10,8 @@ class Tabuleiro {
             }
         }
         console.log(this.tabuleiro);
+
+        this.selecionada = null;
     }
 
     colocarPeca(peca, linha, coluna) {
@@ -19,7 +21,14 @@ class Tabuleiro {
     }
 
     clicarCasa(casa) {
-        console.log(casa);
+        if (this.selecionada && this.selecionada.peca) {
+            const peca = this.selecionada.peca;
+            casa.setPeca(peca);
+            this.selecionada.setPeca(null);
+            this.selecionada = null;
+        }else if (casa.peca) {
+            this.selecionada = casa;
+        }
     }
 }
 
@@ -42,6 +51,11 @@ class Casa {
         this.elementoHtml.addEventListener('click', () => {
             tabuleiro.clicarCasa(this);
         })
+    }
+
+    setPeca(peca) {
+        this.peca = peca;
+        this.elementoHtml.innerHTML = peca ? peca.simbolo : '';
     }
 }
 
